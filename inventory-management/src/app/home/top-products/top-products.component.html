@@ -1,0 +1,18 @@
+<div class="bg-white tm-block h-100">
+    <div class="row">
+        <div class="col-8">
+            <h2 class="tm-block-title d-inline-block">Top Product List</h2>
+
+        </div>
+        <div class="col-4 text-right">
+            <a href="/products" class="tm-link-black">View All</a>
+        </div>
+    </div>
+    <ol class="tm-list-group tm-list-group-alternate-color tm-list-group-pad-big">
+        <ng-container *ngFor="let x of topProducts">
+        <li class="tm-list-group-item">
+            {{ x.name }}
+        </li>
+    </ng-container>
+    </ol>
+</div>

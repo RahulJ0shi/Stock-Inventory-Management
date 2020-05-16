@@ -1,0 +1,121 @@
+<div class="container">
+    <!-- row -->
+    <div class="row tm-mt-big">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-8">
+            <div class="bg-white tm-block">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="tm-block-title d-inline-block">Add Product</h2>
+                    </div>
+                </div>
+                <div class="row mt-4 tm-edit-product-row">
+                    <div class="col-xl-7 col-lg-7 col-md-12">
+                        <form [formGroup]="addProductForm" (ngSubmit)="submitProduct()" class="tm-edit-product-form">
+                        
+                            <div class="input-group mb-3">
+                                <label for="name" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Product
+                                    Name
+                                </label>
+                                <input formControlName="name" type="text" class="form-control col-xl-9 col-lg-8 col-md-8 col-sm-7" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.name.errors.required">Name is required</div>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label for="name" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Price 
+                                </label>
+                                <input formControlName="price" type="number" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7 price" [ngClass]="{ 'is-invalid': submitted && f.price.errors }">
+                                <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                    <div *ngIf="f.price.errors.required">Name is required</div>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label for="category" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Category</label>
+                                <select class="custom-select col-xl-9 col-lg-8 col-md-8 col-sm-7" id="category" (change)="changeCategory($event)" formControlName="category" [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+                                    <option selected value="disabled">Select one</option>
+                                    <option *ngFor="let item of category" [ngValue]="item.p_category">{{ item.p_category}}</option>
+                                </select>
+                                <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                                    <div *ngIf="f.category.errors.required">Name is required</div>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label for="mf_date" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Manufacturing
+                                    Date
+                                </label>
+                                <input id="mf_date" formControlName="mfg_date" type="date" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
+                                    data-large-mode="true" [ngClass]="{ 'is-invalid': submitted && f.mfg_date.errors }">
+                                    <div *ngIf="submitted && f.mfg_date.errors" class="invalid-feedback">
+                                        <div *ngIf="f.mfg_date.errors.required">Name is required</div>
+                                    </div>
+                            </div>                                
+                            <div class="input-group mb-3">
+                                <label for="expire_date" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Expire
+                                    Date
+                                </label>
+                                <input id="expire_date" formControlName="exp_date" type="date" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
+                                    data-large-mode="true" [ngClass]="{ 'is-invalid': submitted && f.exp_date.errors }">
+                                    <div *ngIf="submitted && f.exp_date.errors" class="invalid-feedback">
+                                        <div *ngIf="f.exp_date.errors.required">Name is required</div>
+                                    </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label for="stock" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Units In
+                                    Stock
+                                </label>
+                                <input id="stock" formControlName="units" type="number" class="form-control validate col-xl-9 col-lg-8 col-md-7 col-sm-7 price" [ngClass]="{ 'is-invalid': submitted && f.units.errors }">
+                                <div *ngIf="submitted && f.units.errors" class="invalid-feedback">
+                                    <div *ngIf="f.units.errors.required">Name is required</div>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="ml-auto col-xl-8 col-lg-8 col-md-8 col-sm-7 pl-0">
+                                    <button type="submit" name="add-product" class="btn btn-primary">Add
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <div class="bg-white tm-block">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="tm-block-title d-inline-block">Add Category</h2>
+                    </div>
+                </div>
+                <div class="row mt-4 tm-edit-product-row">
+                    <div class="col-xl-7 col-lg-7 col-md-12">
+                        <form [formGroup]="addCategoryForm" (ngSubmit)="submitCategory()" class="tm-edit-product-form">
+                          <!-- {% csrf_token %} -->
+                            <div class="input-group mb-3">
+                                <label for="name" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Category
+                                </label>
+                                <input id="name" formControlName="category" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7">
+                            </div>
+                            <div class="input-group mb-3">
+                                <label for="name" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Units Capacity
+                                </label>
+                                <input id="name" formControlName="units" type="number" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7 price">
+                            </div>                                
+                            <div class="input-group mb-3">
+                                <div class="ml-auto col-xl-8 col-lg-8 col-md-8 col-sm-7 pl-0">
+                                    <button type="submit" name="add-category" class="btn btn-primary">Add
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+                <div class="alert alert-warning" role="alert" *ngIf="addProdRes || addCatRes">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>added successfully !!!</strong>
+                </div>              
+        </div>            
+    </div>
+</div>

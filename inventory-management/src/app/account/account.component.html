@@ -1,0 +1,116 @@
+<!-- {% extends 'main/index.html' %} -->
+<!-- {% block content %} -->
+<div class="container">
+    <div class="row tm-content-row tm-mt-big">
+        <div class="col-xl-6 col-lg-12 tm-md-12 tm-sm-12 tm-col">
+            <form [formGroup]="checkForm" (ngSubmit)="submitCheckForm()">
+            <div class="bg-white tm-block h-100">
+                <div class="row">
+                    <div class="col-md-8 col-sm-12">
+                        <h2 class="tm-block-title d-inline-block">Accounts</h2>
+
+                    </div>
+                </div>
+                <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar2">
+                    <table class="table table-hover table-striped tm-table-striped-even mt-3">
+                        <thead>
+                            <tr class="tm-bg-gray">
+                                <th scope="col">&nbsp;</th>
+                                <th scope="col">User Accounts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor='let acc of accounts'>
+                            <tr>
+                                <th scope="row">
+                                    <input type="checkbox" aria-label="Checkbox" [value]="acc.username" (change)="onCheckboxChange($event)">
+                                </th>
+                            
+                                <td class="tm-product-name">{{ acc.username }}</td>
+                                
+                            </tr>                                
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="tm-table-mt tm-table-actions-row">
+                    <div class="tm-table-actions-col-left">
+                        <button type="submit" name="delete_selected" class="btn btn-danger">Delete Selected Account</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div> 
+
+    <div class="col-xl-6 col-lg-6 col-md-8 col-sm-8">
+        <div class="bg-white tm-block">
+            <div class="row">
+                <div class="col-4">
+                    <h2 class="tm-block-title d-inline-block">Add User</h2>
+                </div>
+            </div>
+            <div class="row mt-4 tm-edit-product-row">
+                <div class="col-xl-7 col-lg-7 col-md-12">
+                    <form  class="tm-edit-product-form" [formGroup]="addAccount" (ngSubmit)="onSubmit()">
+                        <div class="input-group mb-3">
+                            <label class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Username
+                            </label>
+                            <input  formControlName="username" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                <div *ngIf="f.username.errors.required">username is required</div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <label  class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">E-mail
+                            </label>
+                            <input  formControlName="email" type="email" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                            </div>
+                        </div> 
+                        <div class="input-group mb-3">
+                            <label  class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Password
+                            </label>
+                            <input formControlName="password" type="password" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.required">Password is required</div>
+                                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                            </div>
+                        </div> 
+                        <div class="input-group mb-3">
+                            <label class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">re-enter Password
+                            </label>
+                            <input formControlName="confirmPassword" type="password" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
+                            <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                                <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                                <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                            </div>                            
+                        </div>                                                                                               
+                        <div class="input-group mb-3">
+                            <div class="ml-auto col-xl-8 col-lg-8 col-md-8 col-sm-7 pl-0">
+                                <button type="submit" name="add-user" class="btn btn-primary">Add
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+            <div class="alert alert-warning" role="alert" *ngIf="addRes">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>added successfully !!!</strong>
+            </div>
+            <div class="alert alert-warning" role="alert" *ngIf="delRes">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>delete successfully !!!</strong>
+            </div>            
+
+    </div>                 
+
+    </div>
+</div>
+<!-- {% endblock content%}                                       -->
