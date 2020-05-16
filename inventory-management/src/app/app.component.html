@@ -1,0 +1,8 @@
+<!-- <app-login *ngIf="login==true else dashboard"></app-login>
+<ng-template #dashboard>
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
+</ng-template> -->
+<app-navbar *ngIf="login==true"></app-navbar>
+<router-outlet *ngIf="login==true"></router-outlet>
+<app-login *ngIf="login==false"></app-login>
