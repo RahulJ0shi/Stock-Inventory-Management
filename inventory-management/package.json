@@ -23,7 +23,7 @@
     "bootstrap": "^4.4.1",
     "crypto-js": "^4.0.0",
     "font-awesome": "^4.7.0",
-    "highcharts": "^8.0.4",
+    "highcharts": "^9.0.0",
     "highcharts-angular": "^2.4.0",
     "jquery": "^3.4.1",
     "rxjs": "~6.4.0",
